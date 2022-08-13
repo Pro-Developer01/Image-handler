@@ -21,7 +21,13 @@ export default function ImageUpload() {
                 Authorization: "Client-ID b8a32186230e488"
             },
             body: formdata
-        }).then(data=>data.json()).then(data=>console.log(data)).catch(e=>console.log(e))
+        }).then(data=>data.json()).then(z=>console.log(z)).catch(e=>console.log(e))
+    }
+    const DownloadHandler=(e)=>{
+        e.preventDefault();
+        const url="https://api.imgur.com/3/account/me/images";
+        fetch(url)
+        .then(data=>data.json()).then(data=>console.log(data)).catch(e=>console.log(e));
     }
   return (
     <div className='container'>
@@ -37,6 +43,7 @@ export default function ImageUpload() {
 
             <button onClick={UploadHandler}>Upload</button>
             </div>
+            <button onClick={DownloadHandler}>Get Images</button>
         </form>
     </div>
   )
