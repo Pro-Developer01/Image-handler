@@ -28,17 +28,17 @@ export default function ImageUpload() {
             setdataget(z);
         }).catch(e => console.log(e))
     }
-    const DownloadHandler = (e) => {
-        e.preventDefault();
-        const url = "https://api.imgur.com/3/account/me/images";
-        fetch(url, {
-            method: "GET",
-            headers: {
-                Authorization: "Client-ID b8a32186230e488"
-            },
-        })
-            .then(data => data.json()).then(data => console.log(data)).catch(e => console.log(e));
-    }
+    // const DownloadHandler = (e) => {
+    //     e.preventDefault();
+    //     const url = "https://api.imgur.com/3/account/me/images";
+    //     fetch(url, {
+    //         method: "GET",
+    //         headers: {
+    //             Authorization: "Client-ID b8a32186230e488"
+    //         },
+    //     })
+    //         .then(data => data.json()).then(data => console.log(data)).catch(e => console.log(e));
+    // }
 
     const ShowImages = (e) => {
         e.preventDefault();
@@ -75,7 +75,7 @@ export default function ImageUpload() {
             {dataget.length > 0 && (
                 <>
                     <center>
-                        <div className="card" style="width: 18rem;">
+                        <div className="card" style={{width: "18rem",}}>
                             <img src={imglink} className="card-img-top" alt="notfound" />
                             <div className="card-body">
                                 <h6 className="card-title"><h5>Type: </h5> {dataget.data.type}</h6>
