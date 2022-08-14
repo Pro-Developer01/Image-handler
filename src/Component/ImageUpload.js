@@ -120,28 +120,31 @@ export default function ImageUpload() {
 
              {flagget && downloaddata.data.length>0 && (
                 <>
-                    <center><h3>Account Name: </h3>{downloaddata.data[0].account_url}</center>
+                    <center> <span className='my-2'> <h3>Account Name: </h3>{downloaddata.data[0].account_url} </span> </center>
+                    <center>
                 {
                     downloaddata.data.map((item)=>{
                         return (
-                        <center>
+                            <>
+                     
                             <div className="card my-3" style={{width: "18rem",}}>
                                 <img src={item.link} className="card-img-top" alt="notfound" />
                                 <div className="card-body">
-                                    <h6 className="card-title"><h5>Type: </h5> {item.type}</h6>
-                                    <h6 className="card-title"><h5>Dimension: </h5> {item.width} X {item.height}</h6>
-                                    <h6 className="card-title"><h5>View: </h5> {item.views}</h6>
+                                    <h6 className="card-title"><h5 className='d-inline'>Type: </h5> {item.type}</h6>
+                                    <h6 className="card-title"><h5 className='d-inline'>Dimension: </h5> {item.width} X {item.height}</h6>
+                                    <h6 className="card-title"><h5 className='d-inline'>View: </h5> {item.views}</h6>
     
                                     {/* <a href="#" className="btn btn-primary">Go somewhere</a> */}
                                 </div>
                             </div>
     
                             {/* <img src=  style={{ height: "400px", width: "200px" }} /> */}
-                        </center>
-                        )
-                    
-                    })
-                }
+                            </>
+                            )
+                            
+                        })
+                    }
+                    </center>
                 </>
              )}
         </div>
