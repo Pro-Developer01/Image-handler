@@ -23,7 +23,7 @@ export default function ImageUpload() {
         fetch(url, {
             method: 'POST',
             headers: {
-                Authorization: "Client-ID b8a32186230e488"
+                Authorization: "Client-ID 1a9348b7c6d508c"
             },
             body: formdata
         }).then(data => data.json()).then((z) => {
@@ -31,17 +31,19 @@ export default function ImageUpload() {
             setdataget(z);
         }).catch(e => console.log(e))
     }
-    // const DownloadHandler = (e) => {
-    //     e.preventDefault();
-    //     const url = "https://api.imgur.com/3/account/me/images";
-    //     fetch(url, {
-    //         method: "GET",
-    //         headers: {
-    //             Authorization: "Client-ID b8a32186230e488"
-    //         },
-    //     })
-    //         .then(data => data.json()).then(data => console.log(data)).catch(e => console.log(e));
-    // }
+    const DownloadHandler = (e) => {
+        e.preventDefault();
+        // const formdata = new FormData();
+        const url = "https://api.imgur.com/3/account/me/images";
+        fetch(url, {
+            method: "GET",
+            headers: {
+                Authorization: "Bearer ca17d473eb809343b8b04033235af76bc1da83af"
+            },
+           
+        })
+            .then(data => data.json()).then(data => console.log("getted",data)).catch(e => console.log(e));
+    }
 
     const ShowImages = (e) => {
         e.preventDefault();
@@ -49,7 +51,7 @@ export default function ImageUpload() {
         console.log(dataget);
         console.log(dataget.length);
         setimglink(dataget.data.link);
-        setflag(flag?false:true);
+        setflag(true);
         setview(view+1);
     }
     return (
@@ -73,7 +75,7 @@ export default function ImageUpload() {
 
             </form>
             <hr></hr>
-            {/* <button type="button" onClick={DownloadHandler} className="btn btn-primary" onClick={UploadHandler}>Get Images</button> */}
+            <button type="button" onClick={DownloadHandler} className="btn btn-primary">Get Images</button>
 
             <center>
                 <button type="button" onClick={ShowImages} className="btn btn-primary">Show Images</button>
