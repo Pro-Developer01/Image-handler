@@ -9,6 +9,7 @@ export default function ImageUpload() {
     const [flag, setflag] = useState(false);
     const [view, setview] = useState(0);
     const [flagget, setflagget] = useState(false);
+    const [Check, setcheck] = useState(false);
 
     const fileHandler = (e) => {
         console.log(e.target.files);
@@ -48,8 +49,18 @@ export default function ImageUpload() {
                 setdownloaddata(data);
                 console.log("getted",data)}).catch(e => console.log(e));
 
-                setflagget(true);
-                setflag(false);
+                setcheck(true);
+    }
+    const DownloadShowHandler=(e)=>{
+        e.preventDefault();
+        if(Check)
+        {
+            setflagget(true);
+            setflag(false);
+        }
+        else{
+            alert("Please click on Get ALL Images Button to download the data and then click on this button. ")
+        }
     }
 
     const ShowImages = (e) => {
@@ -78,13 +89,14 @@ export default function ImageUpload() {
                 <br />
                 <div className="button">
                     <button type="button" className="btn btn-primary" onClick={UploadHandler}>Upload</button>
+                    <button type="button" onClick={DownloadHandler} className="btn btn-primary mx-2">Get All Images</button>
                 </div>
 
 
             </form>
             <hr></hr>
             <center>
-            <button type="button" onClick={DownloadHandler} className="btn btn-primary mx-2">Get All Images</button>
+            <button type="button" onClick={DownloadShowHandler} className="btn btn-primary mx-2">Show Images From Account</button>
            <button type="button" onClick={ShowImages} className="btn btn-primary">Recently Uploaded Images</button>
             </center>
             {flag && (
