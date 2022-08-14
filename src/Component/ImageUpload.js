@@ -4,9 +4,11 @@ import "./Style.css";
 export default function ImageUpload() {
     const [Image, setImage] = useState([]);
     const [dataget, setdataget] = useState([]);
+    const [downloaddata, setdownloaddata] = useState([]);
     const [imglink, setimglink] = useState("");
     const [flag, setflag] = useState(false);
     const [view, setview] = useState(0);
+    const [flagget, setflagget] = useState(false);
 
     const fileHandler = (e) => {
         console.log(e.target.files);
@@ -42,7 +44,12 @@ export default function ImageUpload() {
             },
            
         })
-            .then(data => data.json()).then(data => console.log("getted",data)).catch(e => console.log(e));
+            .then(data => data.json()).then((data) => {
+                setdownloaddata(data);
+                console.log("getted",data)}).catch(e => console.log(e));
+
+                setflagget(true);
+                setflag(false);
     }
 
     const ShowImages = (e) => {
@@ -52,6 +59,7 @@ export default function ImageUpload() {
         console.log(dataget.length);
         setimglink(dataget.data.link);
         setflag(true);
+        setflagget(false);
         setview(view+1);
     }
     return (
@@ -75,10 +83,9 @@ export default function ImageUpload() {
 
             </form>
             <hr></hr>
-            <button type="button" onClick={DownloadHandler} className="btn btn-primary">Get Images</button>
-
             <center>
-                <button type="button" onClick={ShowImages} className="btn btn-primary">Show Images</button>
+            <button type="button" onClick={DownloadHandler} className="btn btn-primary mx-2">Get All Images</button>
+           <button type="button" onClick={ShowImages} className="btn btn-primary">Recently Uploaded Images</button>
             </center>
             {flag && (
                 <>
@@ -96,6 +103,33 @@ export default function ImageUpload() {
 
                         {/* <img src=  style={{ height: "400px", width: "200px" }} /> */}
                     </center>
+                </>
+             )}
+
+             {flagget && (
+                <>
+                    <center><h3>Account Name: </h3>{downloaddata.data[0].account_url}</center>
+                {
+                    downloaddata.data.map((item)=>{
+                        return (
+                        <center>
+                            <div className="card my-3" style={{width: "18rem",}}>
+                                <img src={item.link} className="card-img-top" alt="notfound" />
+                                <div className="card-body">
+                                    <h6 className="card-title"><h5>Type: </h5> {item.type}</h6>
+                                    <h6 className="card-title"><h5>Dimension: </h5> {item.width} X {item.height}</h6>
+                                    <h6 className="card-title"><h5>View: </h5> {item.views}</h6>
+    
+                                    {/* <a href="#" className="btn btn-primary">Go somewhere</a> */}
+                                </div>
+                            </div>
+    
+                            {/* <img src=  style={{ height: "400px", width: "200px" }} /> */}
+                        </center>
+                        )
+                    
+                    })
+                }
                 </>
              )}
         </div>
