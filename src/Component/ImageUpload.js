@@ -106,7 +106,7 @@ export default function ImageUpload() {
                 </>
              )}
 
-             {flagget && (
+             {flagget && downloaddata.data.length>0 && (
                 <>
                     <center><h3>Account Name: </h3>{downloaddata.data[0].account_url}</center>
                 {
