@@ -43,6 +43,7 @@ export default function ImageUpload() {
     const ShowImages = (e) => {
         e.preventDefault();
         console.log("clicked");
+        console.log(dataget);
         console.log(dataget.length);
         setimglink(dataget.data.link);
     }
@@ -72,15 +73,15 @@ export default function ImageUpload() {
             <center>
                 <button type="button" onClick={ShowImages} className="btn btn-primary">Show Images</button>
             </center>
-            {dataget.length > 0 && (
+            {/* {dataget.length > 0 && ( */}
                 <>
                     <center>
                         <div className="card" style={{width: "18rem",}}>
                             <img src={imglink} className="card-img-top" alt="notfound" />
                             <div className="card-body">
-                                <h6 className="card-title"><h5>Type: </h5> {dataget.data.type}</h6>
+                                {/* <h6 className="card-title"><h5>Type: </h5> {dataget.data.type}</h6>
                                 <h6 className="card-title"><h5>Dimension: </h5> {dataget.data.width} X {dataget.data.height}</h6>
-                                <h6 className="card-title"><h5>View: </h5> {dataget.data.views}</h6>
+                                <h6 className="card-title"><h5>View: </h5> {dataget.data.views}</h6> */}
 
                                 {/* <a href="#" className="btn btn-primary">Go somewhere</a> */}
                             </div>
@@ -89,7 +90,7 @@ export default function ImageUpload() {
                         {/* <img src=  style={{ height: "400px", width: "200px" }} /> */}
                     </center>
                 </>
-            )}
+            {/* )} */}
         </div>
     )
 }
